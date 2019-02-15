@@ -52,51 +52,67 @@ namespace Lab
 
 
 
-        #region Gender numbers
+        #region Female
 
-        public string GetGenderNumberAsString()
+        public int GenerateFemaleRandomNumber()
         {
             Random random = new Random();
-            string gender;
+            int gender;
+            do
+                gender = random.Next(0, 10);
+            while(gender % 2 == 1);
+            return gender;
+        }
+
+        #endregion
+
+
+
+
+        #region Male
+
+        public int GenerateMaleRandomNumber()
+        {
+            Random random = new Random();
+            int gender;
+            do
+                gender = random.Next(0, 10);
+            while(gender % 2 == 0);
+            return gender;
+        }
+
+        #endregion
+
+
+
+
+        #region Gender numbers
+
+        public int GetGenderNumber()
+        {
+            Random random = new Random();
+            int gender = 2;
             bool isSet = false;
 
             do
             {
                 Console.Write("Gender (Female = 0, Male = 1): ");
-                gender = Console.ReadLine();
 
-                if(gender == "1" || gender == "0")
+                gender = Convert.ToInt32(Console.ReadLine());
+
+                if(gender == 1 || gender == 0)
                     isSet = true;
 
             } while(isSet == false);
 
             //Create female number
-            if(Convert.ToInt32(gender) % 2 == 0)
-            {
-                int x;
-
-                do
-                {
-                    x = random.Next(0, 9);
-
-                } while(x % 2 == 1);
-
-                gender = x.ToString();
-            }
+            if(gender % 2 == 0)
+                gender = GenerateFemaleRandomNumber();
 
             //Create male number
-            if(Convert.ToInt32(gender) % 2 == 1)
-            {
-                int x;
+            if(gender % 2 == 1)
+                gender = GenerateMaleRandomNumber();
 
-                do
-                {
-                    x = random.Next(0, 9);
-
-                } while(x % 2 == 0);
-
-                gender = x.ToString();
-            }
             return gender;
         }
 
