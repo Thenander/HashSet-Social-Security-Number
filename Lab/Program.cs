@@ -9,7 +9,7 @@ namespace Lab
         {
             HelpMethods helpMethods = new HelpMethods();
             HashSet<string> hs = new HashSet<string>();
-            var birthDate = "720611";
+            var birthDate = "";
             var randomNumbers = "";
             var gender = 0;
             var socialSecurityNumber = "";
@@ -17,16 +17,16 @@ namespace Lab
             while(true)
             {
                 socialSecurityNumber = "";
-                //birthDate = helpMethods.GetBirthDateAsString();
+                birthDate = helpMethods.GetBirthDateAsString();
                 randomNumbers = helpMethods.GetTwoRandomNumbersAsString();
-                //gender = helpMethods.GetGenderNumber();
+                gender = helpMethods.GetGenderNumber();
                 socialSecurityNumber = birthDate + randomNumbers + gender.ToString();
                 socialSecurityNumber += helpMethods.GetControlNumberAsString(socialSecurityNumber);
 
                 while(!hs.Add(socialSecurityNumber))
                 {
                     randomNumbers = helpMethods.GetTwoRandomNumbersAsString();
-                    //gender = gender % 2 == 0 ? helpMethods.GenerateFemaleRandomNumber() : helpMethods.GenerateMaleRandomNumber();
+                    gender = gender % 2 == 0 ? helpMethods.GenerateFemaleRandomNumber() : helpMethods.GenerateMaleRandomNumber();
                     socialSecurityNumber = birthDate + randomNumbers + gender.ToString();
                     socialSecurityNumber += helpMethods.GetControlNumberAsString(socialSecurityNumber);
                 }
